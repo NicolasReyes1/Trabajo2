@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class HomeController extends Controller
 {
@@ -20,4 +23,11 @@ class HomeController extends Controller
 
     }
 
+    public function newarriendo(){
+        $authenticated_user = Auth::user();
+        return View('admin.newarriendo')->with([
+            'user' => $authenticated_user,
+        ]);
+
+    }
 }

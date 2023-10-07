@@ -1,11 +1,6 @@
 @extends('layouts.main')
 @section('main-content')
 
-<div class="container py-4">
-    <div class="d-flex justify-content-end">
-        <a class="btn btn-outline-primary" href="{{ route('logout') }}">Cerrar Sesión</a>
-    </div>
-
     <h4 class="my-4">soy el desarrollador de guugul que se va, procedo a dejar algunas pruebas que realicé</h4>
     <hr />
 

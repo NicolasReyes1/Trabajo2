@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArriendoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
@@ -36,6 +37,14 @@ Route::post('/categories', [CategoriesController::class, 'store'])->name('catego
 Route::post('/vehicles', [VehiclesController::class, 'store'])->name('vehicles.store')->middleware('auth');
 
 Route::delete('/vehicles/{id}', [VehiclesController::class, 'delete'])->name('vehicles.delete')->middleware('auth');
+
+Route::post('/list', [ArriendoController::class, 'list'])->name('list')->middleware('auth');
+Route::get('/list', [ArriendoController::class, 'list'])->name('list');
+
+//Route::get('/list', [ArriendoController::class, 'list'])->name('list')->middleware('auth');
+Route::get('/new', [HomeController::class, 'newarriendo'])->name('new')->middleware('auth');
+
+
 
 Route::get('/', function () {
     return view('welcome');
