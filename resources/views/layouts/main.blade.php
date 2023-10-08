@@ -33,7 +33,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../public/new">
+                                <a class="nav-link" href="../public/newarriendo">
                                     Nuevo arriendos
                                 </a>
                             </li>

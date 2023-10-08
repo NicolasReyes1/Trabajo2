@@ -59,5 +59,39 @@ class AuthController extends Controller
         $arriendo = Arriendo::all();
         return view('admin.list', ['arriendomostrar' => $arriendo]);
     }
+
+    public function document(){
+        return view('admin.newarriendo');
+    }
+
+    public function new(Request $request)
+    {
+        // Valida los datos del formulario
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'lastname' => 'required',
+            'rut' => 'required', // Ajusta esto según tus necesidades
+            'patent' => 'required',
+            'email' => 'required|email', // Ajusta esto según tus necesidades
+            'Entrega' => 'required|date',
+            'Devolucion' => 'required|date',
+        ]);
+
+        // Crea una nueva instancia de Arriendo y guárdala en la base de datos
+        $arriendo = Arriendo::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'lastname' => $request->lastname,
+            'rut' => $request->rut,
+            'patent' => $request->patent,
+            'email' => $request->email,
+            'entrega' => $request->entrega,
+            'devolucion' => $request->devolucion,
+        ]);
+
+        $arriendo->save();
+        return redirect()->route('home');
+    }
 }
 
