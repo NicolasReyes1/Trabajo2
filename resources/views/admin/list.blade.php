@@ -1,27 +1,48 @@
 @extends('layouts.main')
 @section('main-content')
+<head>
+<div class="col-md-9">
+    <div class="">
+        <h1 class="align-self-end">Arriendos</h1>
 
-<div class="container">
-    <h1>Arriendos</h1>
+        <a class="btn btn-primary align-self-end" href="{{ route('new') }}">Nuevo Arriendo</a>
+    </div>
+</head>
+
+<body>
     <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Patente</th>
-                <th>Teléfono</th>
-            </tr>
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Rut</th>
+            <th>Patente</th>
+            <th>Entrega</th>
+            <th>Devolucion</th>
+            <th>Accion</th>
+        </tr>
         </thead>
-        <tbody>
-            @foreach($arriendos as $arriendo)
-            <tr>
-                <td>{{ $arriendo->name }}</td>
-                <td>{{ $arriendo->surname }}</td>
-                <td>{{ $arriendo->patent }}</td>
-                <td>{{ $arriendo->phone }}</td>
-            </tr>
-            @endforeach
-        </tbody>
+           <tbody>
+               @foreach($arriendomostrar->sortBy('id') as $arriendo)
+               <tr>
+                  <td>{{ $arriendo->name }} {{ $arriendo->surname }}</td>
+                  <td>{{ $arriendo->rut }}</td>
+                  <td>{{ $arriendo->vehicles ? $arriendo->vehicles->patent : 'N/A' }}</td>
+                  <td>{{ $arriendo->Entrega }}</td>
+                  <td>{{ $arriendo->Devolucion }}</td>
+                  {{--ELIMINAR--}}
+                  <td>
+                    <form  method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+               </tr>
+               @endforeach
+           </tbody>
     </table>
 </div>
+</div>
+</div>
+</body>
 @endsection

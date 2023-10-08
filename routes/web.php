@@ -38,8 +38,7 @@ Route::post('/vehicles', [VehiclesController::class, 'store'])->name('vehicles.s
 
 Route::delete('/vehicles/{id}', [VehiclesController::class, 'delete'])->name('vehicles.delete')->middleware('auth');
 
-Route::post('/list', [ArriendoController::class, 'list'])->name('list')->middleware('auth');
-Route::get('/list', [ArriendoController::class, 'list'])->name('list');
+Route::get('/list', [AuthController::class, 'list'])->name('listado');
 
 //Route::get('/list', [ArriendoController::class, 'list'])->name('list')->middleware('auth');
 Route::get('/new', [HomeController::class, 'newarriendo'])->name('new')->middleware('auth');

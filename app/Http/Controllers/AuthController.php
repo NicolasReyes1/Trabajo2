@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Arriendo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,4 +54,10 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+
+    public function list(){
+        $arriendo = Arriendo::all();
+        return view('admin.list', ['arriendomostrar' => $arriendo]);
+    }
 }
+
