@@ -18,7 +18,7 @@ class HomeController extends Controller
         $categories = Category::with('vehicles')->orderBy('id', 'desc')->get();
         return View('admin.home')->with([
             'user' => $authenticated_user,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
 
     }
