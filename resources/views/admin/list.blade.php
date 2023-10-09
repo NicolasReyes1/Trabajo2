@@ -5,7 +5,7 @@
     <div class="">
         <h1 class="align-self-end">Arriendos</h1>
 
-        <a class="btn btn-primary align-self-end" href="{{ route('new') }}">Nuevo Arriendo</a>
+        <a class="btn btn-primary align-self-end" href="{{ route('newarriendo') }}">Nuevo Arriendo</a>
     </div>
 </head>
 
