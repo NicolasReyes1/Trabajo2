@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Arriendo;
+use App\Http\Controllers\ArriendoController;
+use App\Http\Controllers\VehiclesController;
 use App\Models\User;
+use App\Models\Arriendo;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,37 +64,37 @@ class AuthController extends Controller
     }
 
     public function document(){
-        return view('admin.newarriendo');
+        $vehicles = Vehicle::whereDoesntHave('arriendos')->get();
+        $vehiclesNotRelated = Vehicle::whereDoesntHave('arriendos')->get();
+        return View('admin.newarriendo')->with([
+            'vehicles' => $vehicles,
+            'vehiclesNotRelated' => $vehiclesNotRelated,
+        ]);
     }
 
-    public function new(Request $request)
-    {
-        // Valida los datos del formulario
-        $request->validate([
-            'name' => 'required',
-            'surname' => 'required',
-            'lastname' => 'required',
-            'rut' => 'required', // Ajusta esto según tus necesidades
-            'patent' => 'required',
-            'email' => 'required|email', // Ajusta esto según tus necesidades
-            'Entrega' => 'required|date',
-            'Devolucion' => 'required|date',
-        ]);
-
-        // Crea una nueva instancia de Arriendo y guárdala en la base de datos
-        $arriendo = Arriendo::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'lastname' => $request->lastname,
-            'rut' => $request->rut,
-            'patent' => $request->patent,
-            'email' => $request->email,
-            'entrega' => $request->entrega,
-            'devolucion' => $request->devolucion,
-        ]);
-
-        $arriendo->save();
-        return redirect()->route('home');
+    public function store2(Request $request){
+        {
+            $request->validate([
+                'name' => 'required',
+                'surname' => 'required',
+                'lastname' => 'required',
+                'rut' => 'required',
+                'email' => 'required',
+                'patent' => 'required',
+                'Entrega' => 'required|date',
+                'Devolucion' => 'required|date'
+            ]);
+            Arriendo::create([
+                'name' => $request->input('name'),
+                'surname' => $request->input('surname'),
+                'lastname' => $request->input('lastname'),
+                'rut' => $request->input('rut'),
+                'email' => $request->input('email'),
+                'patent' => $request->input('patent'),
+                'Entrega' => $request->input('Entrega'),
+                'Devolucion' => $request->input('Devolucion'),
+            ]);
+            return redirect()->route('list');
+        }
     }
 }
-

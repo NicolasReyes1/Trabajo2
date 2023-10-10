@@ -12,13 +12,11 @@ class Arriendo extends Model
 
     use SoftDeletes;
 
-
-
     protected $table = 'arriendos';
 
-    protected $fillable = ['id', 'name', 'surname', 'lastname', 'rut', 'patent', 'email', 'entrega', 'devolucion'];
+    protected $fillable = ['name', 'surname', 'lastname', 'rut', 'patent', 'email', 'Entrega', 'Devolucion'];
 
     public function vehicles () {
-        return $this->belongsTo(Vehicle::class, 'patent', 'id');
+        return $this->belongsTo(Vehicle::class, 'patent');
     }
 }

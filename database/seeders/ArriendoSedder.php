@@ -29,7 +29,6 @@ class ArriendoSedder extends Seeder
                 'email' => 'Nicolas@gmail.com',
                 'entrega' => '2005-02-02',
                 'devolucion' => '2005-02-15',
-
             ]);
 
         }
