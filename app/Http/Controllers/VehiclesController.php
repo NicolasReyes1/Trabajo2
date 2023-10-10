@@ -47,3 +47,4 @@ class VehiclesController extends Controller
     return redirect()->route('home')->with('success', 'El vehículo ha sido eliminado de forma suave.');
 }
 }
+
