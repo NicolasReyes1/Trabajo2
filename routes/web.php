@@ -48,7 +48,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
     Route::get('/list', [AuthController::class, 'list'])->name('list')->middleware('auth');
 
 
-Route::delete('/eliminarvehicles/{id}', [VehiclesController::class, 'delete'])->name('eliminarvehicles')->middleware('auth');
+Route::delete('/deletvehicle/{id}', [VehiclesController::class, 'delete'])->name('deletvehicle')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');
