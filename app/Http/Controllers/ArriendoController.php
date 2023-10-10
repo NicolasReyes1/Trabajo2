@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\User;
+use App\Models\Vehicle;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,14 +15,14 @@ use App\Models\Arriendo;
 
 class ArriendoController extends Controller
 {
-    public function list(Request $request){
+    public function store(Request $request){
         $request->validate([
             'name' => 'required',
             'surname' => 'required',
             'lastname' => 'required',
             'rut' => 'required',
             'email' => 'required',
-            'patent' => 'required|exists:arriving,patent',
+            'patent' => 'required|exists:arriendos,patent',
             'Entrega' => 'required',
             'Devolucion' => 'required'
         ]);
@@ -32,7 +36,5 @@ class ArriendoController extends Controller
             'Entrega' => $request->Entrega,
             'Devolucion' => $request->Devolucion
         ]);
-        return redirect()->route('list');
-        return redirect()->route('list');
     }
 }

@@ -41,15 +41,11 @@ Route::delete('/vehicles/{id}', [VehiclesController::class, 'delete'])->name('ve
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 //grupo
-
     Route::get('/newarriendo', [AuthController::class, 'document'])->name('newarriendo');
-    Route::post('/newarriendo', [AuthController::class, 'new'])->name('new')->middleware('auth');
-
+    Route::post('/newarriendo', [AuthController::class, 'store2'])->name('newarriendo.store2')->middleware('auth');
 
 //grupo
-
-    Route::get('/list', [AuthController::class, 'list'])->name('list');
-    Route::post('/list', [AuthController::class, 'list'])->name('list')->middleware('auth');
+    Route::get('/list', [AuthController::class, 'list'])->name('list')->middleware('auth');
 
 
 Route::delete('/eliminarvehicles/{id}', [VehiclesController::class, 'delete'])->name('eliminarvehicles')->middleware('auth');

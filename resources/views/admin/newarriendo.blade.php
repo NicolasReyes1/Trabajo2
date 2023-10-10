@@ -1,43 +1,71 @@
 @extends('layouts.main')
-
 @section('main-content')
 <div class="container">
-    <h1>Nuevo arriendo</h1>
-    <form method="POST" action="{{ route('newarriendo') }}">
+    <section>
+        <div class="header-and-button d-flex justify-content-between align-items-center">
+            <h1 class="header">Nuevo Arriendo</h1>
+        </div>
+        <hr />
+    </section>
+    <form method="POST" action="{{ route('newarriendo.store2') }}">
         @csrf
-        <div class="form-group">
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" required>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <label for="names"><strong>Datos del cliente</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Nombres</span>
+                    <input type="text" class="form-control" name="name" id="name">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Apellido Paterno</span>
+                    <input type="text" class="form-control" name="surname" id="surname">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Apellido Materno</span>
+                    <input type="text" class="form-control" name="lastname" id="lastname">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">RUT</span>
+                    <input type="text" class="form-control" name="rut" id="rut">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Email</span>
+                    <input type="text" class="form-control" name="email" id="email" >
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="patent"><strong>Datos del vehículo</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Patente</span>
+                    <select name="patent" id="patent">
+                        @foreach ($vehicles as $vehicles)
+                            <option value="{{ $vehicles -> id }}">{{ $vehicles -> patent }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Fecha de Entrega</span>
+                    <input type="date" class="form-control" name="Entrega" id="Entrega">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Fecha de Devolución</span>
+                    <input type="date" class="form-control" name="Devolucion" id="Devolucion">
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="surname">Apellido Paterno:</label>
-            <input type="text" id="surname" name="surname" value="{{ old('surname') }}" class="form-control" required>
+        <div class="d-flex justify-content-end mt-4">
+            <input type="submit" value="Guardar" class="btn btn-primary">
         </div>
-        <div class="form-group">
-            <label for="lastname">Apellido Materno:</label>
-            <input type="text" id="lastname" name="lastname" value="{{ old('lastname') }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="rut">RUT:</label>
-            <input type="text" id="rut" name="rut" value="{{ old('rut') }}" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="patent">Patente:</label>
-            <input type="text" id="patent" name="patent" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="entrega">Fecha de entrega:</label>
-            <input type="date" id="entrega" name="entrega" value="{{ old('entrega') }}" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="devolucion">Fecha de devolución:</label>
-            <input type="date" id="devolucion" name="devolucion" value="{{ old('devolucion') }}" class="form-control" required>
-        </div>
-        <button type="submit"  class="btn btn-primary">Guardar</button>
     </form>
 </div>
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection

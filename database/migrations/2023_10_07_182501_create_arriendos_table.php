@@ -13,13 +13,13 @@ class CreateArriendosTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('lastname');
-            $table->integer('rut')->unique();
-            $table->unsignedBigInteger('patent');
-            $table->string('email')->unique();
+            $table->string('rut');
+            $table->string('patent', 6)->unique();
+            $table->string('email');
             $table->date('Entrega');
             $table->date('Devolucion');
             $table->timestamps();
-            $table->foreign('patent')->references('id')->on('vehicles')->onDelete('cascade');
+            $table->foreign('id')->references('id')->on('vehicles')->onDelete('cascade');
         });
     }
 
